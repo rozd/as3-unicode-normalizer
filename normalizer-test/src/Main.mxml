@@ -28,6 +28,7 @@
 				const nfkd:Normalizer = new Normalizer(Normalizer.KD, true);
 				
 				trace(toCharCodes(nfkd.normalize(upsilon))); // 03A5 0301
+				
 			}
 			
 			private function toCharCodes(str:String):String
