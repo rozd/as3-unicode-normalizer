@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+	applicationComplete="applicationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import org.log5f.unicode.normalization.Normalizer;
+			
+			protected function applicationCompleteHandler(event:FlexEvent):void
+			{
+				const upsilon:String = "ϓ"; // 03D3 (GREEK UPSILON WITH ACUTE AND HOOK SYMBOL)
+				
+				const nfc:Normalizer = new Normalizer(Normalizer.C, true);
+				
+				trace(toCharCodes(nfc.normalize(upsilon))); // 03D3
+					
+				const nfd:Normalizer = new Normalizer(Normalizer.D, true);
+				
+				trace(toCharCodes(nfd.normalize(upsilon))); // 03D2 0301
+
+				const nfkc:Normalizer = new Normalizer(Normalizer.KC, true);
+				
+				trace(toCharCodes(nfkc.normalize(upsilon))); // 038E
+
+				const nfkd:Normalizer = new Normalizer(Normalizer.KD, true);
+				
+				trace(toCharCodes(nfkd.normalize(upsilon))); // 03A5 0301
+			}
+			
+			private function toCharCodes(str:String):String
+			{
+				var codes:Array = [];
+				
+				for each (var c:String in str.split(""))
+				{
+					codes.push(c.charCodeAt().toString(16));
+				}
+				
+				return codes.join(" ");
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+</s:Application>
