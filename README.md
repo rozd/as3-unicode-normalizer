@@ -18,7 +18,7 @@ Sample
 
 In the next example Normalization used for decomposing ligature during comparing srtings:
 
-  const nfkd:Normalizer = new Normalizer(Normalizer.KD, true);
+	const nfkd:Normalizer = new Normalizer(Normalizer.KD, true);
   			
 	trace("ﬂ" == "fl"); // false
 	
